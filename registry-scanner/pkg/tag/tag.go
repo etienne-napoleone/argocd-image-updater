@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 
 	"github.com/Masterminds/semver/v3"
 )

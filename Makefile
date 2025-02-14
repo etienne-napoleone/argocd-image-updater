@@ -21,7 +21,7 @@ LDFLAGS=
 
 RELEASE_IMAGE_PLATFORMS?=linux/amd64,linux/arm64
 
-VERSION_PACKAGE=github.com/argoproj-labs/argocd-image-updater/pkg/version
+VERSION_PACKAGE=github.com/etienne-napoleone/argocd-image-updater/pkg/version
 ifeq ($(IMAGE_PUSH), yes)
 DOCKERX_PUSH=--push
 else

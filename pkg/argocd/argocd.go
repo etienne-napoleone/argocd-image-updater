@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/metrics"
-	registryCommon "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/env"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/metrics"
+	registryCommon "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/env"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 
 	argocdclient "github.com/argoproj/argo-cd/v2/pkg/apiclient"
 	"github.com/argoproj/argo-cd/v2/pkg/apiclient/application"
@@ -430,6 +430,29 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 		return fmt.Errorf("cannot set Helm params on non-Helm application")
 	}
 
+	desiredReleaseName := newImage.GetParameterHelmReleaseName(app.Annotations, common.ImageUpdaterAnnotationPrefix)
+
+	appSource := getApplicationSource(app)
+
+	if appSource.Helm == nil {
+		appSource.Helm = &v1alpha1.ApplicationSourceHelm{}
+	}
+
+	if appSource.Helm.Parameters == nil {
+		appSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
+	}
+
+	actualReleaseName := appSource.Helm.ReleaseName
+
+	// If a release-name annotation is present but doesn't match the app’s actual chart, skip
+	if desiredReleaseName != "" && actualReleaseName != "" && desiredReleaseName != actualReleaseName {
+		log.WithContext().
+			AddField("application", app.GetName()).
+			Warnf("Skipping image update for %s: annotation release-name=%q but actual Helm releaseName=%q",
+				newImage.GetFullNameWithTag(), desiredReleaseName, actualReleaseName)
+		return nil
+	}
+
 	appName := app.GetName()
 	appNamespace := app.GetNamespace()
 
@@ -471,16 +494,6 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 			p := v1alpha1.HelmParameter{Name: hpImageTag, Value: newImage.GetTagWithDigest(), ForceString: true}
 			mergeParams = append(mergeParams, p)
 		}
-	}
-
-	appSource := getApplicationSource(app)
-
-	if appSource.Helm == nil {
-		appSource.Helm = &v1alpha1.ApplicationSourceHelm{}
-	}
-
-	if appSource.Helm.Parameters == nil {
-		appSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
 	}
 
 	appSource.Helm.Parameters = mergeHelmParams(appSource.Helm.Parameters, mergeParams)

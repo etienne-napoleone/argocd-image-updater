@@ -10,9 +10,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/test/fake"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/test/fixture"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/test/fake"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/test/fixture"
 )
 
 func Test_ParseCredentialAnnotation(t *testing.T) {

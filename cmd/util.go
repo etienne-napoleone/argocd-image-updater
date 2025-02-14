@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
 )
 
 func getPrintableInterval(interval time.Duration) string {

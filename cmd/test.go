@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/registry"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/registry"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"

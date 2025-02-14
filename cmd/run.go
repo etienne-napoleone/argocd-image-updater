@@ -10,14 +10,14 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/argocd"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/health"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/metrics"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/version"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/env"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/registry"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/argocd"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/health"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/metrics"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/version"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/env"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/registry"
 
 	"github.com/argoproj/argo-cd/v2/reposerver/askpass"
 

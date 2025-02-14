@@ -11,7 +11,7 @@ linters:
     - unused
 linters-settings:
   goimports:
-    local-prefixes: github.com/argoproj-labs/argocd-image-updater
+    local-prefixes: github.com/etienne-napoleone/argocd-image-updater
 issues:
   exclude-files:
     - ".*\\.pb\\.go"

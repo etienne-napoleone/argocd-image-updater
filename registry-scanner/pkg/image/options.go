@@ -6,8 +6,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
 )
 
 // GetParameterHelmImageName gets the value for image-name option for the image
@@ -36,6 +36,17 @@ func (img *ContainerImage) GetParameterHelmImageTag(annotations map[string]strin
 // from a set of annotations
 func (img *ContainerImage) GetParameterHelmImageSpec(annotations map[string]string, annotationPrefix string) string {
 	key := fmt.Sprintf(common.Prefixed(annotationPrefix, common.HelmParamImageSpecAnnotationSuffix), img.normalizedSymbolicName())
+	val, ok := annotations[key]
+	if !ok {
+		return ""
+	}
+	return val
+}
+
+// GetParameterHelmReleaseName gets the value for release-name option for the
+// image from a set of annotations
+func (img *ContainerImage) GetParameterHelmReleaseName(annotations map[string]string, annotationPrefix string) string {
+	key := fmt.Sprintf(common.Prefixed(annotationPrefix, common.HelmParamReleaseNameAnnotationSuffix), img.normalizedSymbolicName())
 	val, ok := annotations[key]
 	if !ok {
 		return ""

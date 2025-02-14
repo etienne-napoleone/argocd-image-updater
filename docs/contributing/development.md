@@ -36,7 +36,7 @@ If you are running the cmd shell and are running into issues running `make all`,
 ## Sending Pull Requests
 
 To send a pull request, simply fork the
-[GitHub repository](https://github.com/argoproj-labs/argocd-image-updater)
+[GitHub repository](https://github.com/etienne-napoleone/argocd-image-updater)
 to your GitHub account, create a new branch, commit & push your changes and then
 send the PR over for review. Changes should be
 [signed off](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s)

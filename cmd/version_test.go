@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/version"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/version"
 )
 
 // Helper function to create the expected full version output

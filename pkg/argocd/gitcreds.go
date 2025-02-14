@@ -12,9 +12,9 @@ import (
 	"github.com/argoproj/argo-cd/v2/util/db"
 	"github.com/argoproj/argo-cd/v2/util/settings"
 
-	"github.com/argoproj-labs/argocd-image-updater/ext/git"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/ext/git"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 )
 
 // getGitCredsSource returns git credentials source that loads credentials from the secret or from Argo CD settings

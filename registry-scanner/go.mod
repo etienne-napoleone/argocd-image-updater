@@ -1,4 +1,4 @@
-module github.com/argoproj-labs/argocd-image-updater/registry-scanner
+module github.com/etienne-napoleone/argocd-image-updater/registry-scanner
 
 go 1.22.0
 

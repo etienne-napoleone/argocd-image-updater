@@ -1,9 +1,9 @@
 # Argo CD Image Updater
 
-![Integration tests](https://github.com/argoproj-labs/argocd-image-updater/workflows/Integration%20tests/badge.svg?branch=master&event=push)
+![Integration tests](https://github.com/etienne-napoleone/argocd-image-updater/workflows/Integration%20tests/badge.svg?branch=master&event=push)
 [![Documentation Status](https://readthedocs.org/projects/argocd-image-updater/badge/?version=latest)](https://argocd-image-updater.readthedocs.io/en/latest/?badge=latest)
 [![codecov](https://codecov.io/gh/argoproj-labs/argocd-image-updater/branch/master/graph/badge.svg)](https://codecov.io/gh/argoproj-labs/argocd-image-updater)
-[![Go Report Card](https://goreportcard.com/badge/github.com/argoproj-labs/argocd-image-updater)](https://goreportcard.com/report/github.com/argoproj-labs/argocd-image-updater)
+[![Go Report Card](https://goreportcard.com/badge/github.com/etienne-napoleone/argocd-image-updater)](https://goreportcard.com/report/github.com/etienne-napoleone/argocd-image-updater)
 
 ## Introduction
 
@@ -84,7 +84,7 @@ The following things are on the roadmap until the `v1.0` release
 * [x] Support for image tags with i.e. Git commit SHAs
 
 For more details, check out the
-[v1.0.0 milestone](https://github.com/argoproj-labs/argocd-image-updater/milestone/1)
+[v1.0.0 milestone](https://github.com/etienne-napoleone/argocd-image-updater/milestone/1)
 
 ## Frequently asked questions
 

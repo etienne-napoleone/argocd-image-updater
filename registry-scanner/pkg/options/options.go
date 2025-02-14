@@ -4,7 +4,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 )
 
 // ManifestOptions define some options when retrieving image manifests

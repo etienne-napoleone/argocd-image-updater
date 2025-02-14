@@ -3,7 +3,7 @@ package cache
 import (
 	"fmt"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 
 	memcache "github.com/patrickmn/go-cache"
 )
