@@ -432,19 +432,56 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 
 	desiredReleaseName := newImage.GetParameterHelmReleaseName(app.Annotations, common.ImageUpdaterAnnotationPrefix)
 
-	appSource := getApplicationSource(app)
-
-	if appSource.Helm == nil {
-		appSource.Helm = &v1alpha1.ApplicationSourceHelm{}
+	// For multi-source applications, we need to find the correct source
+	var matchedSource *v1alpha1.ApplicationSource
+	if app.Spec.HasMultipleSources() {
+		for i := range app.Spec.Sources {
+			source := &app.Spec.Sources[i]
+			if source.Helm == nil {
+				continue
+			}
+			// Match based on release name if specified
+			if desiredReleaseName != "" {
+				if source.Helm.ReleaseName == desiredReleaseName {
+					matchedSource = source
+					break
+				}
+			}
+		}
+		if matchedSource == nil {
+			// If no match found with release name, log warning and return
+			if desiredReleaseName != "" {
+				log.WithContext().
+					AddField("application", app.GetName()).
+					Warnf("No matching source found for release name %q", desiredReleaseName)
+				return nil
+			}
+			// If no release name specified, use first Helm source
+			for i := range app.Spec.Sources {
+				if app.Spec.Sources[i].Helm != nil {
+					matchedSource = &app.Spec.Sources[i]
+					break
+				}
+			}
+		}
+	} else {
+		matchedSource = app.Spec.Source
 	}
 
-	if appSource.Helm.Parameters == nil {
-		appSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
+	if matchedSource == nil {
+		return fmt.Errorf("no valid Helm source found")
 	}
 
-	actualReleaseName := appSource.Helm.ReleaseName
+	if matchedSource.Helm == nil {
+		matchedSource.Helm = &v1alpha1.ApplicationSourceHelm{}
+	}
 
-	// If a release-name annotation is present but doesn't match the app’s actual chart, skip
+	if matchedSource.Helm.Parameters == nil {
+		matchedSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
+	}
+
+	// Validate release name match if specified
+	actualReleaseName := matchedSource.Helm.ReleaseName
 	if desiredReleaseName != "" && actualReleaseName != "" && desiredReleaseName != actualReleaseName {
 		log.WithContext().
 			AddField("application", app.GetName()).
@@ -453,9 +490,7 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 		return nil
 	}
 
-	appName := app.GetName()
-	appNamespace := app.GetNamespace()
-
+	// Set parameters for matched source
 	var hpImageName, hpImageTag, hpImageSpec string
 
 	hpImageSpec = newImage.GetParameterHelmImageSpec(app.Annotations, common.ImageUpdaterAnnotationPrefix)
@@ -472,16 +507,13 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 	}
 
 	log.WithContext().
-		AddField("application", appName).
+		AddField("application", app.GetName()).
 		AddField("image", newImage.GetFullNameWithoutTag()).
-		AddField("namespace", appNamespace).
+		AddField("release", actualReleaseName).
 		Debugf("target parameters: image-spec=%s image-name=%s, image-tag=%s", hpImageSpec, hpImageName, hpImageTag)
 
 	mergeParams := make([]v1alpha1.HelmParameter, 0)
 
-	// The logic behind this is that image-spec is an override - if this is set,
-	// we simply ignore any image-name and image-tag parameters that might be
-	// there.
 	if hpImageSpec != "" {
 		p := v1alpha1.HelmParameter{Name: hpImageSpec, Value: newImage.GetFullNameWithTag(), ForceString: true}
 		mergeParams = append(mergeParams, p)
@@ -496,7 +528,7 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 		}
 	}
 
-	appSource.Helm.Parameters = mergeHelmParams(appSource.Helm.Parameters, mergeParams)
+	matchedSource.Helm.Parameters = mergeHelmParams(matchedSource.Helm.Parameters, mergeParams)
 
 	return nil
 }

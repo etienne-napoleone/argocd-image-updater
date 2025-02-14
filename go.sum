@@ -27,8 +27,6 @@ github.com/alicebob/miniredis/v2 v2.33.0/go.mod h1:MhP4a3EU7aENRi9aO+tHfTBZicLqQ
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
-github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250114144021-10a01f381aa7 h1:5sujDhwNOHW3X3WMzfamC4e9H52z2LboabQ+WLvDQ14=
-github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250114144021-10a01f381aa7/go.mod h1:gTR08JBkPgrrEJ06a5J6H97EWllbgCNs2nbDSPMKHDo=
 github.com/argoproj/argo-cd/v2 v2.13.5 h1:rnX3gDhSw587P1H8uiNNHqaCCOyG9ue6jihPxbgmRLw=
 github.com/argoproj/argo-cd/v2 v2.13.5/go.mod h1:1xggXUniuSkUtcBu0EWl45k1BTuYSASd0bn6WOma4vA=
 github.com/argoproj/gitops-engine v0.7.1-0.20250129155113-4c6e03c46314 h1:UIM6b4b/eNmWLwnsaJNmLzcm0qjHCuyHTuJKeIq2WeE=
@@ -115,6 +113,10 @@ github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymF
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
 github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7+kN2VEUnK/pcBlmesArF7c=
+github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250114144021-10a01f381aa7 h1:5sujDhwNOHW3X3WMzfamC4e9H52z2LboabQ+WLvDQ14=
+github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250114144021-10a01f381aa7/go.mod h1:gTR08JBkPgrrEJ06a5J6H97EWllbgCNs2nbDSPMKHDo=
+github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250214120940-15d2deca0965 h1:wqwbVAjvVIQgF9Gh4wQrr5b1MdIAdf1VeGX5JFT4vSY=
+github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250214120940-15d2deca0965/go.mod h1:mZ1B4xPTI+BbQE+S8WrQ5e+yb2tSDCJekLfQh10xO8M=
 github.com/evanphx/json-patch v5.9.0+incompatible h1:fBXyNpNMuTTDdquAq/uisOr2lShz4oaXpDTX2bLe7ls=
 github.com/evanphx/json-patch v5.9.0+incompatible/go.mod h1:50XU6AFN0ol/bzJsmQLiYLvXMP4fmwYFNcr97nuDLSk=
 github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d h1:105gxyaGwCFad8crR9dcMQWvV9Hvulu6hwUh4tWPJnM=
