@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 )
 
 func StartHealthServer(port int) chan error {

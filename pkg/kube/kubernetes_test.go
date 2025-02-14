@@ -6,9 +6,9 @@ import (
 	appv1alpha1 "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	registryKube "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/test/fake"
-	"github.com/argoproj-labs/argocd-image-updater/test/fixture"
+	registryKube "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/test/fake"
+	"github.com/etienne-napoleone/argocd-image-updater/test/fixture"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

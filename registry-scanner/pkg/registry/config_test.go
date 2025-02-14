@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/test/fixture"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/test/fixture"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -1,11 +1,10 @@
-module github.com/argoproj-labs/argocd-image-updater
+module github.com/etienne-napoleone/argocd-image-updater
 
 go 1.22.0
 
 toolchain go1.23.0
 
 require (
-	github.com/argoproj-labs/argocd-image-updater/registry-scanner v0.0.0-20250114144021-10a01f381aa7
 	github.com/argoproj/argo-cd/v2 v2.13.5
 	github.com/argoproj/gitops-engine v0.7.1-0.20250129155113-4c6e03c46314
 	github.com/argoproj/pkg v0.13.7-0.20230627120311-a4dd357b057e
@@ -59,6 +58,7 @@ require (
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7 // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/emirpasic/gods v1.18.1 // indirect
+	github.com/etienne-napoleone/argocd-image-updater/registry-scanner v0.0.0-20250214120940-15d2deca0965 // indirect
 	github.com/evanphx/json-patch v5.9.0+incompatible // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/fatih/camelcase v1.0.0 // indirect
@@ -174,7 +174,7 @@ require (
 
 replace (
 	// Uncomment for local testing
-	// github.com/argoproj-labs/argocd-image-updater/registry-scanner => ./registry-scanner/
+	// github.com/etienne-napoleone/argocd-image-updater/registry-scanner => ./registry-scanner/
 	github.com/golang/protobuf => github.com/golang/protobuf v1.5.4
 
 	k8s.io/api => k8s.io/api v0.31.0

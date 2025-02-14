@@ -6,10 +6,10 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/argocd"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/argocd"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 
 	"github.com/spf13/cobra"
 )

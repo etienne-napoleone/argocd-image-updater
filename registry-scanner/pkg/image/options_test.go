@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
 )
 
 func Test_GetHelmOptions(t *testing.T) {

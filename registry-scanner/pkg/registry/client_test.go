@@ -21,10 +21,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/registry/mocks"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/registry/mocks"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 )
 
 func TestBasic(t *testing.T) {

@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	kube "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
+	kube "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
 
 	appv1alpha1 "github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 	"github.com/argoproj/argo-cd/v2/pkg/client/clientset/versioned"

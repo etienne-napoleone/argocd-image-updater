@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	git "github.com/argoproj-labs/argocd-image-updater/ext/git"
+	git "github.com/etienne-napoleone/argocd-image-updater/ext/git"
 	mock "github.com/stretchr/testify/mock"
 )
 

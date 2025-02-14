@@ -21,7 +21,7 @@ git checkout -b registry-scanner/release-0.13
 git push origin registry-scanner/release-0.13
 ```
 
-The release name is just an example. You should use the next number from the [previous release](https://github.com/argoproj-labs/argocd-image-updater/releases). Make sure that the branch is named as `registry-scanner/release-X.XX` though.
+The release name is just an example. You should use the next number from the [previous release](https://github.com/etienne-napoleone/argocd-image-updater/releases). Make sure that the branch is named as `registry-scanner/release-X.XX` though.
 
 !!!Note:
 `TARGET_VERSION` is the version we want to release for registry-scanner module.

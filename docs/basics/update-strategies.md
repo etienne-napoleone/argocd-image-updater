@@ -79,7 +79,7 @@ this constraint, e.g. `1.2.5`, `1.2.12` etc, but not to a new minor version
 
 !!!warning "A note on the current image tag"
     For semver strategy to work, the current application tag must already follow
-    semver. Otherwise no comparison can happen by the updater. See discussion at [#270](https://github.com/argoproj-labs/argocd-image-updater/issues/270) for more details.
+    semver. Otherwise no comparison can happen by the updater. See discussion at [#270](https://github.com/etienne-napoleone/argocd-image-updater/issues/270) for more details.
 
 Likewise, to allow updates to any minor release within the major version `1`,
 use

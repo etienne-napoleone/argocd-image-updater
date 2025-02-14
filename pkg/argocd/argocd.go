@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/metrics"
-	registryCommon "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/env"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/metrics"
+	registryCommon "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/env"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
 
 	argocdclient "github.com/argoproj/argo-cd/v2/pkg/apiclient"
 	"github.com/argoproj/argo-cd/v2/pkg/apiclient/application"
@@ -430,9 +430,67 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 		return fmt.Errorf("cannot set Helm params on non-Helm application")
 	}
 
-	appName := app.GetName()
-	appNamespace := app.GetNamespace()
+	desiredReleaseName := newImage.GetParameterHelmReleaseName(app.Annotations, common.ImageUpdaterAnnotationPrefix)
 
+	// For multi-source applications, we need to find the correct source
+	var matchedSource *v1alpha1.ApplicationSource
+	if app.Spec.HasMultipleSources() {
+		for i := range app.Spec.Sources {
+			source := &app.Spec.Sources[i]
+			if source.Helm == nil {
+				continue
+			}
+			// Match based on release name if specified
+			if desiredReleaseName != "" {
+				if source.Helm.ReleaseName == desiredReleaseName {
+					matchedSource = source
+					break
+				}
+			}
+		}
+		if matchedSource == nil {
+			// If no match found with release name, log warning and return
+			if desiredReleaseName != "" {
+				log.WithContext().
+					AddField("application", app.GetName()).
+					Warnf("No matching source found for release name %q", desiredReleaseName)
+				return nil
+			}
+			// If no release name specified, use first Helm source
+			for i := range app.Spec.Sources {
+				if app.Spec.Sources[i].Helm != nil {
+					matchedSource = &app.Spec.Sources[i]
+					break
+				}
+			}
+		}
+	} else {
+		matchedSource = app.Spec.Source
+	}
+
+	if matchedSource == nil {
+		return fmt.Errorf("no valid Helm source found")
+	}
+
+	if matchedSource.Helm == nil {
+		matchedSource.Helm = &v1alpha1.ApplicationSourceHelm{}
+	}
+
+	if matchedSource.Helm.Parameters == nil {
+		matchedSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
+	}
+
+	// Validate release name match if specified
+	actualReleaseName := matchedSource.Helm.ReleaseName
+	if desiredReleaseName != "" && actualReleaseName != "" && desiredReleaseName != actualReleaseName {
+		log.WithContext().
+			AddField("application", app.GetName()).
+			Warnf("Skipping image update for %s: annotation release-name=%q but actual Helm releaseName=%q",
+				newImage.GetFullNameWithTag(), desiredReleaseName, actualReleaseName)
+		return nil
+	}
+
+	// Set parameters for matched source
 	var hpImageName, hpImageTag, hpImageSpec string
 
 	hpImageSpec = newImage.GetParameterHelmImageSpec(app.Annotations, common.ImageUpdaterAnnotationPrefix)
@@ -449,16 +507,13 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 	}
 
 	log.WithContext().
-		AddField("application", appName).
+		AddField("application", app.GetName()).
 		AddField("image", newImage.GetFullNameWithoutTag()).
-		AddField("namespace", appNamespace).
+		AddField("release", actualReleaseName).
 		Debugf("target parameters: image-spec=%s image-name=%s, image-tag=%s", hpImageSpec, hpImageName, hpImageTag)
 
 	mergeParams := make([]v1alpha1.HelmParameter, 0)
 
-	// The logic behind this is that image-spec is an override - if this is set,
-	// we simply ignore any image-name and image-tag parameters that might be
-	// there.
 	if hpImageSpec != "" {
 		p := v1alpha1.HelmParameter{Name: hpImageSpec, Value: newImage.GetFullNameWithTag(), ForceString: true}
 		mergeParams = append(mergeParams, p)
@@ -473,17 +528,7 @@ func SetHelmImage(app *v1alpha1.Application, newImage *image.ContainerImage) err
 		}
 	}
 
-	appSource := getApplicationSource(app)
-
-	if appSource.Helm == nil {
-		appSource.Helm = &v1alpha1.ApplicationSourceHelm{}
-	}
-
-	if appSource.Helm.Parameters == nil {
-		appSource.Helm.Parameters = make([]v1alpha1.HelmParameter, 0)
-	}
-
-	appSource.Helm.Parameters = mergeHelmParams(appSource.Helm.Parameters, mergeParams)
+	matchedSource.Helm.Parameters = mergeHelmParams(matchedSource.Helm.Parameters, mergeParams)
 
 	return nil
 }

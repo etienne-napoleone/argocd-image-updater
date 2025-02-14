@@ -3,11 +3,11 @@ package argocd
 import (
 	"testing"
 
-	"github.com/argoproj-labs/argocd-image-updater/ext/git"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	registryKube "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/test/fake"
-	"github.com/argoproj-labs/argocd-image-updater/test/fixture"
+	"github.com/etienne-napoleone/argocd-image-updater/ext/git"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	registryKube "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/test/fake"
+	"github.com/etienne-napoleone/argocd-image-updater/test/fixture"
 
 	"github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
 

@@ -11,13 +11,13 @@ import (
 
 	"golang.org/x/exp/slices"
 
-	"github.com/argoproj-labs/argocd-image-updater/ext/git"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/registry"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/ext/git"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/registry"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 
 	"github.com/argoproj/argo-cd/v2/pkg/apiclient/application"
 	"github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"

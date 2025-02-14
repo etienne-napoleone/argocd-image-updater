@@ -16,10 +16,10 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/log"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/log"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 )
 
 const (

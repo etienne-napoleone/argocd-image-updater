@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/registry/mocks"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/registry/mocks"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 
 	"github.com/distribution/distribution/v3/manifest/schema1" //nolint:staticcheck
 	"github.com/stretchr/testify/assert"

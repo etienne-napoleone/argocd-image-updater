@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/version"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/version"
 )
 
 // newVersionCommand implements "version" command

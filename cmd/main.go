@@ -5,9 +5,9 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/argoproj-labs/argocd-image-updater/ext/git"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/argocd"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/ext/git"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/argocd"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
 
 	"github.com/spf13/cobra"
 )

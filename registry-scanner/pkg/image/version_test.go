@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/options"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/tag"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/options"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/tag"
 )
 
 func newImageTagList(tagNames []string) *tag.ImageTagList {

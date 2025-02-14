@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/argoproj-labs/argocd-image-updater/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/pkg/kube"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/pkg/kube"
 
-	registryCommon "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/common"
-	"github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/image"
-	registryKube "github.com/argoproj-labs/argocd-image-updater/registry-scanner/pkg/kube"
+	registryCommon "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/common"
+	"github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/image"
+	registryKube "github.com/etienne-napoleone/argocd-image-updater/registry-scanner/pkg/kube"
 
 	"github.com/argoproj/argo-cd/v2/pkg/apiclient/application"
 	"github.com/argoproj/argo-cd/v2/pkg/apis/application/v1alpha1"
